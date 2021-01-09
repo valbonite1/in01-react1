@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useForm } from "react-hook-form";
 
 const AddComment = ( { addRecom } ) => {
 
@@ -7,16 +8,17 @@ const AddComment = ( { addRecom } ) => {
 const [firstName, setFirstName] = useState(''); //for firstName input
 const [lastName, setLastName] = useState(''); //for lastName input
 const [comment, setComment] = useState(''); // for comment input
+const { register, handleSubmit, errors } = useForm();
 
 //handles the submit.
 
-const handleSubmit = (e) => {
-  e.preventDefault(); //prevents the page from reload.
+const onSubmit = () => {
   setFirstName(''); //everytime you submit, empties field
   setLastName('');//everytime you submit, empties field
   setComment(''); //everytime you submit, empties field
   addRecom(firstName, lastName, comment); //passed down function from parent componenet
 
+  alert('Your comment has been posted!')
 
 }
 
@@ -37,37 +39,44 @@ const handleSubmit = (e) => {
                 <label>First Name</label>
                 <input 
                   type='text' 
-                  required
+                  name='firstName'
                   value={firstName} 
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder='First Name'
+                  ref={register({ required: true })}
                 />
+                {errors.firstName && <p style={{color: 'red', fontSize: '0.8rem'}}>This field is required!</p>}
               </div>
               <div className='input-container'>
                 <label>Last Name</label>
                 <input 
+                  name='lastName'
                   type='text' 
                   required
                   value={lastName} 
                   onChange={(e) => setLastName(e.target.value)}
                   placeholder='Last Name'
+                  ref={register({ required: true })}
                   />
+                  {errors.lastName && <p style={{color: 'red', fontSize: '0.8rem'}}>This field is required!</p>}
               </div>
               <div className='input-container'>
                 <label>Recommendation</label>
                 <textarea 
-                  name='Comment' 
+                  name='comment' 
                   rows='10' 
                   cols='40' 
                   required
                   value={comment} 
                   onChange={(e) => setComment(e.target.value)} 
                   placeholder='Recommendation'
+                  ref={register({ required: true })}
                   />
+                  {errors.comment && <p style={{color: 'red', fontSize: '0.8rem'}}>This field is required!</p>}
               </div>
           </div>
           <div className='modal-btn'>
-            <button className='btn-write' type='submit' onClick={handleSubmit}>Write</button>
+            <button className='btn-write' type='submit' onClick={handleSubmit(onSubmit)}>Write</button>
           </div>
       </form>
     </>

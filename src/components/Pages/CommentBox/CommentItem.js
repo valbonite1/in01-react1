@@ -9,7 +9,7 @@ const CommentItem = ( { deleteRecom, editRow, recommendations } ) => {
       <ul className='comment-list'>
         {recommendations.map((recom, index) => {
           return(
-            <li key={recom.id}>
+            <li key={recom.id} >
               <div className='comment-icon'>
                 <i className='fas fa-user-circle'></i>
               </div>

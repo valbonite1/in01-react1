@@ -20,11 +20,6 @@ const Footer = () => {
           <h5>Made with love | <i className='fas fa-copyright'></i> Copyright 2020</h5> 
         </div>
       </div>
-      <form>
-
-        <input type='text' required></input>
-        <button type='submit' onClick={(e) => console.log('hello')}>hello</button>
-      </form>
     </>
   );
 }

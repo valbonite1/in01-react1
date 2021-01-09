@@ -173,7 +173,7 @@
     width: 100%;
     flex-direction: row;
     padding-left: 2rem;
-    margin: 0;
+    margin: 3rem 0 0 0;
     height: 40px;
     align-items: center;
   }
